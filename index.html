@@ -1,59 +1,138 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#ffe4ef"><title>إلى توجة ♡</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffe4ef">
+<title>إلى توجة ♡</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;color:#682746;background:linear-gradient(145deg,#ffe8f0,#fff8fb 55%,#f8d9ec);min-height:100vh}
-.screen{display:none;min-height:100vh;padding:25px 15px;align-items:center;justify-content:center;flex-direction:column;text-align:center}.screen.active{display:flex}
-.hero{background:linear-gradient(0deg,#26102dbb,#531f451a),radial-gradient(ellipse at 75% 25%,#ffb7c9,transparent 32%),linear-gradient(145deg,#5c416e,#d97e9e 55%,#ffc2b5);color:white}
-h1{font-size:clamp(2rem,7vw,3.3rem);line-height:1.4;margin:18px 0}p{white-space:pre-line;line-height:2;font-size:1.02rem}.wrap{max-width:650px;width:100%}
-button{font:inherit;cursor:pointer;border:0;border-radius:999px;padding:13px 22px;margin:7px;transition:.2s}.primary{background:linear-gradient(120deg,#ff8eb5,#ffc1d5);color:#702344;font-weight:bold}.secondary{background:#fff;color:#8c315a;border:1px solid #ffd2e1}
-input{width:min(360px,90%);padding:14px 18px;border:1px solid #ffd0e0;border-radius:18px;text-align:center;background:#fff9fc;color:#682746;font:inherit}
-.error{min-height:28px;color:#ffe1ec}.eyebrow,.topline{font-size:.9rem;opacity:.9}.decor{font-size:2rem;margin:10px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:min(650px,100%);margin:15px auto}.card{background:#fff9fc;border:1px solid #ffd0e0;border-radius:22px;padding:19px 8px;color:#8d315a;min-height:100px}.card span{display:block;font-size:1.8rem;margin-bottom:7px}
-.paper{width:min(630px,100%);padding:clamp(22px,5vw,40px);background:#fffafc;border:1px solid #ffd5e3;border-radius:8px 28px;box-shadow:0 16px 42px #8e3a5a1c}
-.unit{display:inline-block;background:#fff8fccc;color:#74254a;border-radius:16px;padding:10px;min-width:67px;margin:4px}.unit b{display:block;font-size:1.5rem}.unit span{font-size:.78rem}
-.choice{display:block;width:min(420px,100%);margin:8px auto;background:white;border:1px solid #ffc6dc;border-radius:16px;padding:12px;color:#87365c}.choice.selected{background:#ffe1ed}
-#answer{min-height:44px;color:#a53c6a;font-weight:bold}.musicbox{width:min(560px,100%);background:#fff8fc;border:1px solid #ffd4e3;border-radius:22px;padding:15px;margin:12px auto;color:#7b2c51}.musicbox iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px}
-.float{position:fixed;pointer-events:none;animation:rise 4s linear forwards;z-index:5}@keyframes rise{from{transform:translateY(0);opacity:0}15%{opacity:.9}to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
-@media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-</style></head><body>
-<section class="screen hero active" id="gate"><div class="wrap"><div class="eyebrow">A LITTLE WORLD MADE JUST FOR YOU ♡</div><div class="decor">🎀 ✨ 🌷</div><h1>توقفي لحظة يا توجة<br>هذه المساحة لكِ وحدكِ 🤍</h1><p>إذا كنتِ أنتِ، فستعرفين كلمة السر ♡</p><form onsubmit="unlock(event)"><input id="pass" type="password" placeholder="اكتبي كلمة السر هنا" autocomplete="off"><br><button class="primary">افتحي عالمكِ الصغير 🔐</button></form><div class="error" id="err"></div><small>صُنع بحب، من أجلكِ أنتِ ♡</small></div></section>
-<section class="screen hero" id="welcome"><div class="wrap"><div class="decor">🌅 💗 ✨</div><h1>إلى توجة،<br>أجمل صدفة حدثت في حياتي</h1><p>كل عام وأنتِ بخير يا أميرتي. حضرت لكِ عالمًا صغيرًا، فيه كلام تمنيت أن يصلكِ بطريقة مختلفة.</p><div id="count"></div><p>الوقت المتبقي حتى يومكِ الجميل 🎂</p><button class="primary" onclick="show('menu');hearts()">ادخلي عالمكِ ♡</button></div></section>
-<section class="screen" id="menu"><div class="topline">كل قلب يخفي رسالة كتبتها لكِ ♡</div><h1>ماذا تريدين أن تكتشفي يا توجة؟</h1><p>اختاري أي قلب، فكل واحد يحمل لكِ شيئًا من قلبي.</p><div class="grid"><button class="card" onclick="msg('love')"><span>❤️</span>لماذا أحبكِ؟</button><button class="card" onclick="msg('comfort')"><span>🧸</span>رسائل حنان</button><button class="card" onclick="msg('wish')"><span>🌷</span>ما أتمناه لكِ</button><button class="card" onclick="msg('secret')"><span>🎁</span>مفاجأة صغيرة</button><button class="card" onclick="msg('future')"><span>♾️</span>مستقبلنا معًا</button><button class="card" onclick="show('quiz')"><span>🎮</span>لعبة الأسئلة</button></div><button class="primary" onclick="show('birthday');hearts()">افتحي هدية عيد ميلادكِ 🎂</button><button class="secondary" onclick="show('music')">أغنية أهديها لكِ 🎵</button></section>
-<section class="screen" id="message"><div class="paper"><div class="decor" id="icon">💌</div><h1 id="title"></h1><p id="text"></p></div><button class="secondary" onclick="show('menu')">رجوع إلى القلوب</button><button class="primary" onclick="nextMsg()">رسالة أخرى ♡</button></section>
-<section class="screen" id="quiz"><div class="paper"><h1>لعبة صغيرة، يا توجة ♡</h1><p id="question"></p><div id="opts"></div><div id="answer"></div><button class="primary" onclick="nextQ()">السؤال التالي ♡</button></div><button class="secondary" onclick="show('menu')">العودة إلى القلوب</button></section>
-<section class="screen" id="music"><h1>Just the Way You Are 🎵</h1><div class="musicbox"><p><b>Bruno Mars</b><br>لأنكِ جميلة كما أنتِ، ولا تحتاجين أن تكوني شخصًا آخر لتكوني مميزة.</p><iframe src="https://www.youtube-nocookie.com/embed/LjhCEhWiKXk?rel=0" title="Bruno Mars - Just the Way You Are" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p><a href="https://www.youtube.com/results?search_query=Bruno+Mars+Just+The+Way+You+Are+official+video" target="_blank">فتح الأغنية على YouTube ♫</a></p></div><button class="primary" onclick="show('menu')">رجوع</button></section>
-<section class="screen" id="birthday"><div class="decor">🎂 🕯️ 💗</div><h1>عيد ميلاد سعيد يا توجة</h1><div class="paper"><p>إلى توجة، في يوم ميلادكِ ♡
-
-اليوم ليس يومًا عاديًا، ففيه وُلدت إنسانة أصبحت تعني لي الكثير.
-
-كل عام وأنتِ بخير، وكل عام وأنتِ أقرب إلى أحلامكِ، وأكثر سعادة وراحة وطمأنينة. أتمنى أن يحمل لكِ عامكِ الجديد أيامًا تليق بقلبكِ، وضحكات كثيرة، وأسبابًا لا تنتهي للفخر بنفسكِ.
-
-قد تفصل بيننا المسافة الآن، لكنني أردت أن أصنع لكِ زاوية صغيرة تشبهكِ، وتذكّركِ بأن هناك من يتمنى لكِ الخير من قلبه، ويحب أن يراكِ سعيدة.
-
-أتمنى أن تتذكري دائمًا أنكِ لا تحتاجين إلى أن تكوني مثالية حتى تكوني مميزة، ولا إلى أن تتغيري حتى تستحقي الحب والفرح. أتمنى لكِ أن تبقي أنتِ، بكل تفاصيلكِ الجميلة، وأن تقتربي كل يوم من الحياة التي تحلمين بها.
-
-عيد ميلاد سعيد يا أجمل صدفة في حياتي. أحبكِ ♡</p></div><button class="primary" onclick="show('ending');hearts()">آخر مفاجأة 💌</button><button class="secondary" onclick="show('menu')">ما زال هناك المزيد</button></section>
-<section class="screen hero" id="ending"><div class="wrap"><div class="decor">🌙 💗 ✨</div><h1>شكرًا لوجودكِ في حياتي يا توجة</h1><p>كل عام وأنتِ بخير يا حبيبتي. أتمنى أن تكون أيامكِ القادمة ألطف وأجمل، وأن تجدي في كل سنة جديدة أسبابًا أكثر لتبتسمي وتفخري بنفسكِ.
-
-قد لا أكون بجانبكِ الآن، لكنني أردت أن أترك لكِ شيئًا صغيرًا تستطيعين فتحه وتذكّر أن هناك قلبًا يتمنى لكِ الخير والسعادة.
-
-إلى أيام أجمل، وأحلام تتحقق، وذكريات حلوة تنتظرنا ♡</p><div class="decor">♡ إلى توجة، بكل الحب ♡</div><button class="primary" onclick="show('welcome')">ابدئي من جديد ♡</button></div></section>
+:root{--pink:#ff79a9;--deep:#7e234b;--paper:#fff9fc;--ink:#682746}
+*{box-sizing:border-box}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--ink);background:linear-gradient(145deg,#ffe8f0,#fff8fb 55%,#f8d9ec);min-height:100vh;overflow-x:hidden}
+button,input{font:inherit}button{cursor:pointer}
+.screen{display:none;min-height:100vh;padding:26px 16px 40px;align-items:center;justify-content:center;flex-direction:column;text-align:center;position:relative}
+.screen.active{display:flex}
+.hero{background:linear-gradient(0deg,rgba(38,15,47,.62),rgba(83,31,69,.1)),radial-gradient(ellipse at 75% 25%,#ffb7c9,transparent 32%),linear-gradient(145deg,#5c416e,#d97e9e 55%,#ffc2b5);color:white}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 25%,#fff9 0 1px,transparent 2px),radial-gradient(circle at 70% 60%,#fff9 0 1px,transparent 2px);background-size:48px 48px;pointer-events:none}
+.hero-content{max-width:650px;position:relative;width:100%}
+.eyebrow{letter-spacing:1.5px;font-size:.82rem;opacity:.9}
+h1{font-size:clamp(2.1rem,8vw,3.7rem);margin:18px 0;line-height:1.4}
+p{line-height:2;font-size:1.03rem;white-space:pre-line}
+.primary,.secondary{border:0;border-radius:999px;padding:13px 23px;margin:7px;box-shadow:0 8px 24px #9c39662b;transition:.2s}
+.primary{background:linear-gradient(120deg,#ff8eb5,#ffc1d5);color:#702344;font-weight:bold}
+.secondary{background:#fff;color:#8c315a;border:1px solid #ffd2e1}
+button:hover{transform:translateY(-2px)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:min(850px,100%);margin:18px auto}
+.card{border:1px solid #ffd0e0;background:#fff9fc;border-radius:22px;padding:20px 8px;min-height:125px;color:#8d315a;box-shadow:0 8px 22px #b14d7620}
+.card .icon{display:block;font-size:2rem;margin-bottom:10px}
+.card strong{font-size:.95rem}
+.paper{width:min(680px,100%);padding:clamp(24px,6vw,44px);background:#fffafc;border:1px solid #ffd5e3;border-radius:8px 28px 8px 28px;box-shadow:0 16px 42px #8e3a5a1c;position:relative}
+.paper:after{content:"♡";position:absolute;bottom:8px;left:16px;color:#f29abc;font-size:1.5rem}
+.note{font-size:.86rem;color:#a75d7c}
+.choice{display:block;width:min(440px,100%);margin:9px auto;padding:13px;border:1px solid #ffc6dc;border-radius:18px;background:#fff;color:#87365c}
+.choice.selected{background:#ffe1ed;border-color:#f07aa6}
+#answer{min-height:48px;font-weight:bold;color:#a53c6a}
+input{width:min(360px,90%);padding:14px 18px;border:1px solid #ffd0e0;border-radius:18px;text-align:center;background:#fff9fc;color:#682746;outline:none}
+.error{min-height:26px;color:#ffe1ec}
+.countdown{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:22px 0}
+.unit{background:#fff8fccc;color:#74254a;border-radius:18px;padding:12px 16px;min-width:76px;box-shadow:0 8px 22px #4e17351b}
+.unit b{display:block;font-size:1.8rem}
+.unit span{font-size:.8rem}
+.musicbox{width:min(560px,100%);background:#fff8fc;border:1px solid #ffd4e3;border-radius:22px;padding:18px;margin:12px auto;color:#7b2c51}
+.musicbox iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:14px;margin-top:12px}
+footer{font-size:.8rem;opacity:.72;margin-top:20px}
+.float{position:fixed;pointer-events:none;animation:rise 4s linear forwards;z-index:5}
+@keyframes rise{from{transform:translateY(0) scale(.8);opacity:0}15%{opacity:.9}to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+@media(max-width:600px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.card{min-height:112px;padding:16px 6px}.card .icon{font-size:1.7rem}.screen{padding:22px 13px 30px}.unit{min-width:65px;padding:10px}}
+</style>
+</head>
+<body>
+<section class="screen hero active" id="gate">
+ <div class="hero-content">
+  <div class="eyebrow">A LITTLE WORLD MADE JUST FOR YOU ♡</div><div class="decor">🎀 ✨ 🌷</div>
+  <h1>توقفي لحظة يا توجة<br>هذه المساحة لكِ وحدكِ 🤍</h1>
+  <p>إذا كنتِ أنتِ، فستعرفين كلمة السر ♡</p>
+  <form onsubmit="unlock(event)"><input id="password" type="password" placeholder="اكتبي كلمة السر هنا" autocomplete="off" aria-label="كلمة السر"><br><button class="primary" type="submit">افتحي عالمكِ الصغير 🔐</button></form>
+  <div id="gateError" class="error"></div><div class="note" style="color:#fff">صُنع بحب، من أجلكِ أنتِ فقط ♡</div>
+ </div>
+</section>
+<section class="screen hero" id="welcome">
+ <div class="hero-content">
+  <div class="eyebrow">FOR MY TOUJA ♡</div><div class="decor">🌅 💗 ✨</div>
+  <h1>إلى توجة،<br>أجمل صدفة حدثت في حياتي</h1>
+  <p>كل عام وأنتِ بخير يا أميرتي.
+حضّرت لكِ عالمًا صغيرًا، فيه كلام تمنيت أن يصلكِ بطريقة مختلفة.</p>
+  <div class="countdown" id="countdown">
+   <div class="unit"><b id="days">--</b><span>يوم</span></div><div class="unit"><b id="hours">--</b><span>ساعة</span></div><div class="unit"><b id="minutes">--</b><span>دقيقة</span></div><div class="unit"><b id="seconds">--</b><span>ثانية</span></div>
+  </div>
+  <p id="countLabel">الوقت المتبقي حتى يومكِ الجميل 🎂</p>
+  <button class="primary" onclick="show('menu');hearts()">اضغطي هنا يا أميرتي ♡</button>
+ </div>
+</section>
+<section class="screen" id="menu">
+ <div class="topline">كل قلب يخفي رسالة كتبتها لكِ ♡</div><h1 style="font-size:clamp(1.8rem,6vw,2.7rem)">ماذا تريدين أن تكتشفي يا توجة؟</h1>
+ <p>اختاري أي قلب، فكل واحد يحمل لكِ شيئًا من قلبي.</p>
+ <div class="grid">
+  <button class="card" onclick="openMessage('love')"><span class="icon">❤️</span><strong>لماذا أحبكِ؟</strong></button>
+  <button class="card" onclick="openMessage('comfort')"><span class="icon">🧸</span><strong>رسالة حنان</strong></button>
+  <button class="card" onclick="openMessage('wish')"><span class="icon">🌷</span><strong>ما أتمناه لكِ</strong></button>
+  <button class="card" onclick="openMessage('secret')"><span class="icon">🎁</span><strong>مفاجأة صغيرة</strong></button>
+  <button class="card" onclick="openMessage('future')"><span class="icon">♾️</span><strong>أمنية للمستقبل</strong></button>
+  <button class="card" onclick="show('quiz')"><span class="icon">🎮</span><strong>لعبة الأسئلة</strong></button>
+ </div>
+ <button class="primary" onclick="show('birthday');hearts()">افتحي هدية عيد ميلادكِ 🎂</button><button class="secondary" onclick="show('music')">أغنية أهديها لكِ 🎵</button>
+</section>
+<section class="screen" id="message">
+ <div class="topline">رسالة إلى توجة ♡</div><div class="paper"><div class="decor" id="msgIcon">💌</div><h1 id="msgTitle" style="font-size:2rem">رسالة</h1><p id="msgText"></p></div>
+ <div><button class="secondary" onclick="show('menu')">رجوع إلى القلوب</button><button class="primary" onclick="nextMessage()">رسالة أخرى ♡</button></div>
+</section>
+<section class="screen" id="quiz">
+ <div class="topline">لعبة صغيرة، وإجاباتكِ كلها جميلة ♡</div><h1 style="font-size:2rem">اختاري يا توجة</h1>
+ <div class="paper"><p id="question"></p><div id="options"></div><div id="answer"></div><button class="primary" id="nextQ" onclick="nextQuestion()">السؤال التالي ♡</button></div>
+ <button class="secondary" onclick="show('menu')">العودة إلى القلوب</button>
+</section>
+<section class="screen" id="music">
+ <div class="topline">أغنية أهديها لكِ من قلبي ♡</div><h1 style="font-size:clamp(1.8rem,6vw,2.7rem)">Love Story 🎵</h1>
+ <div class="musicbox"><p><b>Indila</b><br>أغنية أهديها لكِ، لأن بعض الحكايات تبقى في القلب.</p>
+ <iframe src="https://www.youtube-nocookie.com/embed/DF3XjEhJ40Y?rel=0" title="Indila - Love Story" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+ <p class="note">إذا لم يعمل المشغّل، افتحي الأغنية من يوتيوب مباشرة.</p><a href="https://www.youtube.com/watch?v=DF3XjEhJ40Y" target="_blank" rel="noopener" style="color:#a13c6b">فتح الأغنية على YouTube ♫</a></div>
+ <button class="primary" onclick="show('menu')">رجوع إلى المفاجآت</button>
+</section>
+<section class="screen" id="birthday">
+ <div class="decor">🎂 🕯️ 💗</div><div class="topline">اليوم يومكِ يا توجة</div><h1 style="font-size:clamp(2rem,7vw,3.3rem)">عيد ميلاد سعيد يا حبيبتي</h1>
+ <div class="paper"><p id="birthdayText"></p></div>
+ <button class="primary" onclick="show('ending');hearts()">اضغطي لتصلي إلى آخر مفاجأة 💌</button><button class="secondary" onclick="show('menu')">ما زال هناك المزيد</button>
+</section>
+<section class="screen" id="ending">
+ <div class="hero-content"><div class="decor">🌙 💗 ✨</div><h1 style="font-size:clamp(2rem,7vw,3.2rem)">شكرًا لوجودكِ في حياتي يا توجة</h1><p id="endingText"></p><div class="decor">♡ إلى توجة، بكل الحب ♡</div><button class="primary" onclick="show('welcome')">ابدئي الرحلة من جديد ♡</button></div>
+</section>
+<footer style="text-align:center;padding:10px 12px">صُنعت هذه الصفحة خصيصًا لتوجة ♡</footer>
 <script>
-/* يتحقق الخادم من كلمة السر قبل إرسال الملفات، وليس عبر JavaScript في المتصفح. */
-async function unlock(e){e.preventDefault();const p=document.getElementById('pass').value;try{const r=await fetch('/.netlify/functions/auth',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:p})});if(r.ok){sessionStorage.setItem('touja_auth','yes');show('welcome');hearts()}else document.getElementById('err').textContent='الكلمة ليست صحيحة، حاولي مرة أخرى يا توجة ♡'}catch{document.getElementById('err').textContent='تعذر التحقق. تأكدي من اتصال الإنترنت ثم حاولي مرة أخرى.'}}
+const passwordCode='10ديسمبر';
+function unlock(e){e.preventDefault();let v=document.getElementById('password').value.trim().replace(/\s/g,'');if(v===passwordCode.replace(/\s/g,'')){document.getElementById('gateError').textContent='';show('welcome');hearts()}else{document.getElementById('gateError').textContent='الكلمة ليست صحيحة، حاولي مرة أخرى يا توجة ♡'}}
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
 const messages={
-love:['❤️','لماذا أحبكِ؟','أحبكِ لأنكِ أنتِ، لا لأنكِ تحاولين أن تكوني شخصًا آخر.\\nأحب تفاصيلكِ الصغيرة، وطريقتكِ في الكلام، واللحظات التي تجعلين فيها يومي أفضل دون أن تنتبهي.\\nأحب أن أتعرف إليكِ أكثر، وأن أرى العالم من زاويتكِ، وأن أشارككِ ما يفرحكِ وما يشغل بالكِ.\\nلا أريدكِ أن تشعري أنكِ مطالبة بأن تكوني مثالية؛ أحب حقيقتكِ وتفاصيلكِ كما هي ♡'],
-comfort:['🧸','رسالة حنان','يا توجة، إذا مرّ عليكِ يوم ثقيل، فتذكّري أنكِ لا تحتاجين إلى أن تكوني قوية طوال الوقت.\\nخذي وقتكِ، وارتاحي، وكوني لطيفة مع نفسكِ كما تكونين مع من تحبين.\\nأتمنى أن تجدي دائمًا ما يطمئن قلبكِ، وأن تتذكري أنكِ تستحقين الراحة والاحترام والفرح، حتى في الأيام التي لا تشعرين فيها بذلك.\\nأتمنى لو أستطيع أن أجعل يومكِ أخفّ، ولو بكلمة صادقة ♡'],
-wish:['🌷','ما أتمناه لكِ','أتمنى لكِ قلبًا مطمئنًا، وأيامًا مليئة بالضحك، ونجاحًا يجعلكِ فخورة بنفسكِ.\\nأتمنى أن تصلي إلى أحلامكِ خطوة بخطوة، وأن تجدي حولكِ أشخاصًا يقدّرونكِ ويحترمون قلبكِ.\\nأتمنى أن تتذكّري دائمًا أن قيمتكِ لا تتوقف على رأي أحد، وأن أمامكِ أشياء جميلة لم تعيشيها بعد.\\nكل عام وأنتِ أقرب إلى الحياة التي تتمنينها يا توجة ♡'],
-secret:['🎁','مفاجأة صغيرة','سرّ صغير: هناك تفاصيل منكِ قد تبدو عادية بالنسبة إليكِ، لكنها تبقى في ذاكرتي طويلًا.\\nقد لا تنتبهين إلى أثر كلماتكِ، لكن بعض التفاصيل منكِ تجعلني أبتسم حتى بعد انتهاء حديثنا.\\nوهذه هديتي السرية: أتمنى أن تصلكِ في هذا اليوم ابتسامة صادقة، وأن تعرفي أنكِ شخص غالٍ عندي، ليس فقط في عيد ميلادكِ، بل في الأيام العادية أيضًا ♡'],
-future:['♾️','أمنية للمستقبل','أتمنى أن يأتي يوم نحتفل فيه بعيد ميلادكِ من دون أن تفصل بيننا شاشة.\\nأن نصنع ذكرياتنا الصغيرة، ونضحك على أشياء لا يفهمها غيرنا، ونساند بعضنا في الأيام الجميلة والصعبة.\\nلا أستطيع أن أعرف كل ما يحمله المستقبل، لكنني أتمنى أن يكون مليئًا بالخير لكِ، وأن نواصل السير نحو أحلامنا خطوة بخطوة، مع احترام أحلام كل واحد منا ودعمها.\\nإلى ذكريات أجمل تنتظرنا يا توجة ♡']};
-let last='love';function msg(k){last=k;const m=messages[k];document.getElementById('icon').textContent=m[0];document.getElementById('title').textContent=m[1];document.getElementById('text').textContent=m[2].replace(/\\n/g,'\n');show('message');hearts()}function nextMsg(){const k=Object.keys(messages);msg(k[(k.indexOf(last)+1)%k.length])}
-const qs=[['ما أكثر شيء تتمنين أن نفعله معًا يومًا ما؟',['نصنع ذكريات جميلة','نضحك على أشياء تافهة','نحقق أحلامنا معًا','كل ما سبق 💗'],'اختيار جميل! أتمنى أن نعيش أيامًا مليئة باللحظات التي تسعدكِ ♡'],['ما الهدية التي قد تسعدكِ أكثر؟',['رسالة من القلب','مفاجأة غير متوقعة','وقت جميل نتحدث فيه','كلها لها مكانة خاصة'],'أتمنى أن تصلكِ السعادة بالطريقة التي تحبينها أنتِ ♡'],['ما الأمنية التي تختارينها لعامكِ الجديد؟',['راحة البال','تحقيق حلم مهم','أيام مليئة بالضحك','قليل من كل شيء'],'من قلبي، أتمنى أن يحمل لكِ هذا العام الخير والطمأنينة والفرح ♡']];let qi=0;
-function renderQ(){document.getElementById('question').textContent=qs[qi][0];document.getElementById('opts').innerHTML='';document.getElementById('answer').textContent='';qs[qi][1].forEach(x=>{const b=document.createElement('button');b.className='choice';b.textContent=x;b.onclick=()=>{document.querySelectorAll('.choice').forEach(y=>y.classList.remove('selected'));b.classList.add('selected');document.getElementById('answer').textContent=qs[qi][2];hearts()};document.getElementById('opts').appendChild(b)})}function nextQ(){if(qi<qs.length-1){qi++;renderQ()}else{qi=0;renderQ();show('menu')}}renderQ();
-function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
-function hearts(){for(let i=0;i<12;i++){const e=document.createElement('span');e.className='float';e.textContent=['♡','💗','✨','💕','🌸'][Math.floor(Math.random()*5)];e.style.left=Math.random()*100+'vw';e.style.bottom='-25px';e.style.fontSize=(16+Math.random()*20)+'px';document.body.appendChild(e);setTimeout(()=>e.remove(),4200)}}
-function countdown(){const n=new Date();let t=new Date(n.getFullYear(),10,6);if(n>t)t=new Date(n.getFullYear()+1,10,6);let d=t-n;document.getElementById('count').innerHTML=`<div class="unit"><b>${Math.floor(d/86400000)}</b><span>يوم</span></div><div class="unit"><b>${Math.floor(d%86400000/3600000)}</b><span>ساعة</span></div><div class="unit"><b>${Math.floor(d%3600000/60000)}</b><span>دقيقة</span></div><div class="unit"><b>${Math.floor(d%60000/1000)}</b><span>ثانية</span></div>`}countdown();setInterval(countdown,1000);
-</script></body></html>
+love:{icon:'❤️',title:'لماذا أحبكِ؟',text:`تووووجة تاعي تعرفي مرات نسقسي روحي علاه نحبك لهاذ الدرجة وواش هو الشي لي خلاك توصلي لهاد المكان كامل في قلبي ونلقى روحي كل مرة نلقى سبب جديد وسبب احلى من لي قبلو بصح الحقيقة انني ما نحبكش على حاجة وحدة ولا على صفة معينة فيك نحبك على بزاف حوايج يمكن حتى انتي ماتنتبهيش ليهم نحبك خاطر انتي انتي بكل ما فيك نحب طريقتك في الكلام ونحب كيفاش تحكيلي على نهارك وعلى اصغر التفاصيل لي تصرالك ونحب كيفاش تقدري تبدلي مزاجي بكلمة وحدة ونحب دلالك لي مرات يكون بلا سبب ونحب ضحكتك لي نتمنى نكون سبب فيها دايما ونحب حتى كي تكوني زعفانة وتبداي تعاتبيني خاطر حتى في عتابك نحس بلي كاين قلب يحبني وما يحبش يبعد عليا ونحب اهتمامك بالتفاصيل الصغيرة ونحب كيفاش تحفظي حوايج عليا يمكن انا نسيتها ونحب كي تحاولي تفرحيني وكي تبعثيلي كلام من قلبك وكي تحاولي تفهميني حتى في الاوقات لي مانعرفش فيها نشرح واش راني حاس ونحبك اكثر خاطر معاك مانحسش بلي لازم نكون شخص مثالي ولا لازم نختار كل كلمة قبل مانقولها نقدر نكون رؤوف كيما انا ونقدر نحكيلك على الحوايج لي في راسي ونضحك معاك ونتدلل عليك وحتى نسكت معاك بلا مانحس بلي لازم نعمر كل لحظة بالهدرة ونحب فيك انك ماشي غير انسانة نحب نهدر معاها وقت الفراغ بل انتي الانسانة لي نحب نشارك معاها وقتي اصلا ونحبك خاطر كي نفرح نحبك تعرفي وكي يصرا لي شيء نحب نحكيلك وكي نشوف حاجة تذكرني بيك نلقى روحي نفكر فيك وحدي ونحبك خاطر وجودك يخليني نحس بمشاعر ما نقدرش نوصفها بسهولة ونحبك حتى في الحوايج لي ماشي كامل مثالية فيك خاطر انا ما نحبش صورة رسمتها في خيالي ونحبك تكوني عليها انا نحب توجة الحقيقية لي تفرح وتزعل وتغلط وتتعلم وتدلل وتضحك وتكون عندها ايام مليحة وايام صعيبة ونحب نكون الانسان لي تقدري تكوني معاه على طبيعتك بلا ماتخافي من حكم ولا من سوء فهم ونحبك خاطر مهما دازت بيناتنا لحظات صعيبة نبقى نشوف فيك نفس البنت لي قلبي اختارها ونبقى نتفكر علاه بديت نحبك وعلاه كل يوم نزيد نتعلق بيك اكثر ويمكن اكثر سبب نحبك عليه هو انني معاك مانحسش بلي الحب مجرد كلمة نقولها ونكمل نهاري بل نحسه في رغبتي نسمعك وفي اهتمامي بتفاصيلك وفي خوفي على زعافك وفي فرحتي كي تكوني فرحانة وفي كل مرة نحب نكون سبب يخليك تبتسمي توجة انا مانعرفش اذا قدرت نوصل لك كامل واش راكي تعنيلي بصح نحبك تعرفي بلي ماكانش نهار نفيق فيه ونقول خلاص عرفت كل اسباب حبي ليك خاطر كل يوم توريني فيك حاجة جديدة تخليني نحبك اكثر واذا سقساوني علاه نحبك مانقدرش نعطيهم جواب واحد خاطر انتي ماشي سبب واحد انتي مجموعة من التفاصيل الصغيرة لي اجتمعت وخلات قلبي يحب انسانة وحدة بهاد الطريقة وانا فرحان بزاف بلي هذي الانسانة هي انتي يا توجة تاعي ونحبك تعرفي بلي حتى لو نعاود نفس الكلام الف مرة راح نبقى كل مرة نقصد نفس المعنى ونحبك اكثر مما تعرفي يا مدللتي`},
+comfort:{icon:'🧸',title:'رسالة حنان',text:`تووووجة تاعي حابة نقولك حاجة ونحبك تحطيها في بالك ديما مهما كان واش صرا معاك ومهما كان نهارك صعيب ولا حسيتي روحك تعبانة ولا الدنيا ما مشاتش كيما كنتي حابة ماتنسيش بلي ماشي لازم تكوني قوية كل الوقت وماشي لازم ديما تضحكي وتبيني بلي راكي بخير حتى كي تكوني من الداخل محتاجة غير شوية راحة وحنان نحبك تعرفي بلي عندك الحق تتعبي وعندك الحق تزعفي وعندك الحق تكون عندك ايام ماتكونيش فيها قادرة على حتى حاجة وما نحبكش ابدا تحسي بلي لازم تخبي عليا واش راكي حاسة بيه ولا تتصنعي القوة قدامي خاطر انا نحبك في كل حالاتك ماشي غير كي تكوني فرحانة وتضحكي وتدللي عليا نحب حتى نكون الانسان لي تقدري تجيه كي يثقل عليك كلش وتحكيلو بلا ماتخممي كيفاش راح يفهمك ولا واش راح يقولك ونحبك ديما تكوني حنينة مع روحك كيما راكي حنينة مع الناس لي تحبيهم وما تقساش على نفسك على كل غلطة ولا على كل حاجة ماقدرتيش تديريها وما تنقصيش من قيمة روحك بسبب نهار سيئ ولا موقف ما مشاش كيما حبيتي خاطر انتي تستاهلي تكوني مرتاحة ومحبوبة ومقدرة حتى في الايام لي ماتكونيش فيها في احسن حالاتك واذا جاك نهار حسيتي فيه بلي كلش راهو ثقيل عليك نحبك تتفكري بلي كاين انسان يحب يسمعك حتى لو عاودتي نفس الكلام مية مرة ويحب يطمن عليك حتى لو ماكانش عندك موضوع تحكي عليه ويحب يشوفك مرتاحة اكثر من انو يشوفك تحاولي ترضيه وانتي تعبانة وربي يعلم شحال نتمنى نقدر نخفف عليك كل حاجة تقلقك ونبدل كل لحظة زعاف فيك بابتسامة ونكون سبب في راحة قلبك ولو بحاجة صغيرة ونحبك تعرفي بلي ما تحتاجيش تديري اي حاجة باش تستاهلي حناني ولا اهتمامي انتي تستاهليهم فقط لانك انتي توجة تاعي وانا نحبك بكل حالاتك ونتمنى ديما تكوني بخير وحتى كي ماتكونيش بخير نحبك تعرفي بلي ماكاش داعي تواجهي كل شيء وحدك يا مدللتي الصغيورة تاعي`},
+wish:{icon:'🌷',title:'ما أتمناه لكِ',text:`تووووجة تاعي نتمنى من كل قلبي نشوفك ديما فرحانة ومرتاحة ونشوف الضحكة ماتفارقش وجهك ونشوفك تحققي كل حاجة حلمتي بيها وكل حاجة تعبتي عليها ونتمنى يجي نهار تشوفي فيه روحك وصلتي لكل الحوايج لي كنتي تتمنيهم وتكوني فخورة بروحك وبكل خطوة درتيها باش توصلي وين حبيتي نحبك ديما تكوني مؤمنة بروحك وبقدراتك وماتخليش حتى رأي ولا كلام من اي انسان ينقص من قيمتك ولا يخليك تشكي في روحك خاطر انتي عندك قيمة كبيرة وماشي لازم حتى واحد يثبتلك هذا الشي ونتمنى ربي يفتحلك ابواب الخير من وين ماتتوقعيش ويبعد عليك كل حاجة تقلق قلبك ويعوضك على كل يوم صعيب بايام احلى منو وعلى كل دمعة بضحكة وعلى كل خوف بطمأنينة ونحبك ديما تتفكري بلي مازال قدامك بزاف حوايج حلوة تستنا فيك ومازال كاين احلام راح تحققيها وايام راح تعيشيها وذكريات راح تصنعيها ويمكن اكثر حاجة نتمنّاها من بين كل هاد الامنيات هي انني نكون حاضر في بزاف من هاد اللحظات ونشوفك وانتي تحققي احلامك ونفرح بنجاحاتك ونكون اول واحد يصفقلك ويفتخر بيك ونتمنى يجي نهار نقدر نشوفك فيه قدامي ونقول الحمد لله على كل خطوة جابتني ليك وعلى كل الايام لي صبرنا فيها حتى وصلنا لبعضانا خاطر انا ما نحبش تكوني مجرد جزء جميل من شبابي ونبقاو غير نتفكرو الايام لي عشناها بل نحبك تكوني شريكتي في الحياة لي مازال نستناو فيها ونحب يجي نهار نتزوجك ونبداو حياتنا مع بعض ونبنيوا دارنا الصغيرة لي يكون فيها حبنا وراحتنا وضحكتنا ونجيبو ولادنا إيلين ويازن ونشوفوهم يكبرو قدامنا ونعيشو معاهم تفاصيل الحياة الصغيرة لي اليوم غير نحكيو عليها ونتمنّاوها ونكونو لبعضانا في كل المراحل الحلوة والصعيبة ونكبروا واحنا مازالنا نختارو بعضانا كل يوم ونحب كي يجي ذاك النهار نتفكرو هاد الايام ونضحكو على كل مرة كنا نتمنّاو فيها نكونو مع بعض ونتمنى من ربي يكتبنا لبعض في الحلال ويجمعنا على خير ويعطينا حياة فيها المودة والرحمة والطمأنينة لي نستحقوها وكل عام وانتي اقرب لاحلامك واقرب لكل حاجة تفرح قلبك وكل عام وانتي توجة لي نحبها اكثر من العام لي قبلو ونتمنى في كل عيد ميلاد جديد ليك نكون معاك ونحتافلو بيه مع بعض ومايبقاش بيناتنا غير المسافة لي كانت في يوم من الايام ونبقى ديما ندعيلك بالخير والفرحة والنجاح خاطر سعادتي ماشي غير نشوفك معايا بل حتى نشوفك سعيدة وتعيشي الحياة لي تستاهليها يا توجة تاعي 🤍`},
+secret:{icon:'🎁',title:'مفاجأة صغيرة',text:`تووووجة تاعي تعرفي كاين حوايج صغيرة فيك يمكن انتي ماتعطيهمش حتى اهمية ويمكن ماتنتبهيش بلي ندير بالي ليهم بصح انا نحفظهم ونبقى نتفكرهم حتى بعد ما تفوت الهدرة بيناتنا نحب التفاصيل الصغيرة لي فيك نحب طريقتك كي تناديني ونحب الكلمات لي تستعمليهم معايا ونحب ضحكتك كي تكوني فرحانة ونحب حتى ردودك العفوية والحوايج لي تحكيهالي بلا ماتخممي فيها بزاف ويمكن اكثر حاجة نحبها هي انك ماتعرفيش اصلا شحال من مرة قدرتي تخليني نبتسم غير بتصرف صغير منك ولا بكلمة قلتيها وانتي ماتعرفيش بلي راح تبقى في بالي طول النهار مرات نكون ندير في حاجة عادية ونلقى روحي نتفكر موقف صغير صار بيناتنا ولا كلمة قلتيهالي ونبتسم وحدي ونقول شحال نحب هاد الطفلة وشحال التفاصيل الصغيرة تاعها غالية عندي ونحبك تعرفي بلي ماشي لازم يكون عيد ميلادك ولا تكون مناسبة خاصة باش نحسسك بلي راكي غالية عندي خاطر بالنسبة ليا انتي ماشي انسانة نتفكر قيمتها غير في المناسبات انتي عندك مكانتك في كل يوم وفي كل وقت وحتى في الايام العادية لي ما يصرا فيها والو مميز وجودك وحدو يخليها مميزة واذا كان عندي هدية سرية نقدر نهديهالك اليوم فهي انني نتمنى نقدر نشوفك تبتسمي ابتسامة من قلبك وتكوني فرحانة من غير حتى سبب ونحبك ديما تتفكري بلي كاين واحد يلاحظ تفاصيلك الصغيرة ويحبها وكاين واحد يفرح برسائلك ويستنى هدرتك ويتفكر كلامك حتى بعد ما تسالي المحادثة وهذا الواحد هو انا يا توجة ونحبك تعرفي بلي حتى ابسط حاجة تجي منك عندي ماشي بسيطة خاطرها منك انتي 🤍`},
+future:{icon:'♾️',title:'أمنية للمستقبل',text:`تووووجة تاعي تعرفي اكثر حاجة نتمناها هي يجي نهار نحتفلو فيه بعيد ميلادك ونكون معاك وما تكونش بيناتنا هذيك الشاشة لي نشوفك من وراها ونحكيو من خلالها نتمنا نكون حدّاك ونعيشو هذيك اللحظات مع بعضانا ونضحكو ونفرحو ونصنعو ذكريات صغيرة تاعنا وحدنا ذكريات يمكن تبان عادية لأي واحد يسمعها بصح بالنسبة لينا تكون عندها قيمة كبيرة ونبقاو نتفكروها ونضحكو عليها حتى بعد سنين نتمنا نعيش معاك الايام الحلوة ونكون سند ليك في الايام لي ماتكونش سهلة ونلقاو بعضانا في كل مرة مهما كانت الظروف ونعرف بلي المستقبل ما نقدرش نعرف واش مخبيلنا ولا كيفاش راح تكون الايام بصح نقدر نتمنى من قلبي يكون فيه الخير ليك وتحققي فيه كل واش راكي تحلمي بيه ونكون انا ثاني نحقق احلامي ونشوفك تحققي احلامك ونبقاو نشجعو بعضانا ونوقفو مع بعضانا من غير ما واحد فينا ينسى روحو ولا احلامو خاطر نحب نشوفك ناجحة وفرحانة وفخورة بروحك قبل كل شيء ونحب نكون الشخص لي تلقايه يشجعك كي تتعبي ويفرحلك كي تنجحي ويذكرك بقدرتك كي تشكي في روحك ونتمنا يجي نهار نرجعو نتفكرو هذي الايام ونقولو شحال كنا نتمنو نكونو مع بعضانا وشحال استنينا هذي اللحظات وها حنا عشناها فعلا يا توجة نتمنى تكون قدامنا ذكريات اجمل بزاف من لي عشناهم لحد الآن ونتمنى كل عيد ميلاد يجي عليك نكون اقرب ليك من لي قبله ونحتفلو بيه مع بعضانا ونزيدو نكتبو فصل جديد من حكايتنا 🤍 إلى ذكريات أجمل تنتظرنا يا توجة حبيبتي تاااعي وحدي 🙄ماقدرتش نكمل بنفس الستيل فليميساج كامل مهدرتش هكا 😆اي تصلح تصلح 😆😆`}
+};
+let last='love';
+function openMessage(key){last=key;const m=messages[key];document.getElementById('msgIcon').textContent=m.icon;document.getElementById('msgTitle').textContent=m.title;document.getElementById('msgText').textContent=m.text;show('message');hearts()}
+function nextMessage(){const keys=Object.keys(messages);openMessage(keys[(keys.indexOf(last)+1)%keys.length])}
+const questions=[
+{q:'ما أكثر شيء تتمنين أن نفعله معًا يومًا ما؟',opts:['نصنع ذكريات جميلة','نضحك على أشياء تافهة','نحقق أحلامنا معًا'],replies:['وأنا أتمنى أن نصنع ذكريات كثيرة تبقى معنا، حتى أبسط الأيام نحبها تكون مميزة معاكِ 🤍','ضحكتك من أكثر الحوايج لي نحبها، ونتمنى نضحكو مع بعض على تفاصيل صغيرة بزاف 🥹','نتمنى نشوفك تحققي أحلامك ونحقق أحلامنا، ونبقاو نشجعو بعضانا خطوة بخطوة 🤍']},
+{q:'ما الهدية التي قد تسعدكِ أكثر؟',opts:['رسالة من القلب','مفاجأة غير متوقعة','وقت جميل نتحدث فيه'],replies:['وحتى لو نكتبلك ألف رسالة، ما نقدرش نوصفلك كامل واش راكي تعنيلي، بصح نقدر كل مرة نحاول نخليك تحسي بشوية من الحب لي في قلبي ليكِ 🤍','إذن حضّري روحك للمفاجآت، خاطر مازال عندي بزاف حوايج نتمنى نعيشهم معاك ونشوف الفرحة في عينيك كي نحققهملك 🥹','حتى أنا نختار الوقت معاك، خاطر نقدر نهدر معاك ساعات وما نحسش بالوقت، وكل دقيقة معاك عندها طعم خاص 🤍']},
+{q:'ما الأمنية التي تختارينها لعامكِ الجديد؟',opts:['راحة البال','تحقيق حلم مهم','أيام مليئة بالضحك'],replies:['يا رب نشوفك ديما مرتاحة ورايقة البال، وما يكون في قلبك حتى شيء يقلقك، وتعيشي أيام هادئة وجميلة تستاهليها يا توجة تاعي 🤍','نتمنى نشوفك تحققيه ونكون أول واحد يفرحلك ويفتخر بيك، ونشوف الفرحة في عينيك كي توصلي للحاجة لي تعبتي عليها، وديما نكون نشجعك حتى توصلي لأبعد مما تتمني 🥹','إذن لازم نكون مسؤول على جزء كبير من هذي الضحكات، نحب نشوفك تضحكي من قلبك ونكون سبب في أجمل لحظاتك، وما نخلي الملل يعرف طريقو لينا 🤍']}
+];let qi=0;
+function renderQ(){const q=questions[qi];document.getElementById('question').textContent=q.q;document.getElementById('answer').textContent='';document.getElementById('options').innerHTML='';q.opts.forEach((opt,i)=>{let b=document.createElement('button');b.className='choice';b.textContent=opt;b.onclick=()=>{document.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');document.getElementById('answer').textContent=q.replies[i];hearts()};document.getElementById('options').appendChild(b)});document.getElementById('nextQ').textContent=qi===questions.length-1?'انتهت اللعبة ♡':'السؤال التالي ♡'}
+function nextQuestion(){if(qi<questions.length-1){qi++;renderQ()}else{qi=0;renderQ();show('menu')}}renderQ();
+const birthdayMessage=`كل عام وانتي بخير يا تووووجتي وان شاء الله هذي السنة تكون بداية لحوايج حلوة بزاف في حياتك وتكون ايامك كلها خير وفرحة وتلقاي فيها اسباب تخليك تبتسمي من قلبك وتكوني فخورة بروحك كيما نكون انا فخور بيك وبكل خطوة تديريها نحو احلامك نحبك تعرفي بلي نتمنى نشوفك ديما بخير ومرتاحة وفرحانة ونشوف كل حاجة تتمنايها تولي حقيقة قدام عينيك وتعيشي ايام احسن من لي راحو وتكون كل سنة تجي عليك احلى من لي قبلها ونعرف بلي ماقدرتش نكون معاك اليوم ونحتفل بيك كيما كنت نحب بصح حبيت نديرلك هذي الحاجة الصغيرة باش كي تفتحيها تحسي ولو للحظة بلي كاين واحد راه يفكر فيك ويتمنى يشوفك اسعد انسانة في الدنيا ويدعيلك بالخير من قلبو وصدقيني حتى لو المسافة بعيدة وما نقدرش نكون حدّاك في هذي اللحظة راكي حاضرة في بالي وفرحتك تهمني بزاف ونتمنى نجي نهار نقدر نعوضو فيه هذي الاعياد لي فاتونا ونحتفلو مع بعضانا ونضحكو ونعيشو لحظات كنا غير نتخيّلوها ونزيدو نصنعو ذكريات جديدة تبقى معانا لسنين طويلة نحبك يا توجة وان شاء الله نشوفك تحققي احلامك كامل وتوصلي لكل واش تستاهلي وتبقى ضحكتك حاضرة ديما وكل عام وانتي اغلى انسانة عندي 🤍`;
+document.getElementById('birthdayText').textContent=birthdayMessage;
+document.getElementById('endingText').textContent=birthdayMessage;
+function updateCountdown(){const now=new Date();let target=new Date(now.getFullYear(),10,6,0,0,0);if(now>target)target=new Date(now.getFullYear()+1,10,6,0,0,0);let diff=target-now;const vals={days:Math.floor(diff/86400000),hours:Math.floor(diff%86400000/3600000),minutes:Math.floor(diff%3600000/60000),seconds:Math.floor(diff%60000/1000)};Object.keys(vals).forEach(k=>document.getElementById(k).textContent=vals[k]);document.getElementById('countLabel').textContent=(now.getMonth()===10&&now.getDate()===6)?'اليوم يومكِ! عيد ميلاد سعيد يا توجة 🎂':'الوقت المتبقي حتى يومكِ الجميل 🎂'}
+updateCountdown();setInterval(updateCountdown,1000);
+function hearts(){for(let i=0;i<14;i++){let e=document.createElement('span');e.className='float';e.textContent=['♡','💗','✨','💕','🌸'][Math.floor(Math.random()*5)];e.style.left=Math.random()*100+'vw';e.style.bottom='-25px';e.style.fontSize=(16+Math.random()*20)+'px';e.style.animationDuration=(3+Math.random()*2)+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),5200)}}
+</script>
+</body></html>
